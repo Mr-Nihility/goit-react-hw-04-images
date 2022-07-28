@@ -34,7 +34,7 @@ const ImageGallery = ({ handlerOpenModal, query }) => {
         setImageList(prev => [...prev, ...data.hits]);
         setTotalHits(data.totalHits);
         setStatus(STATUS.success);
-        setPage(2);
+        setPage(prev => prev + 1);
       })
       .catch(error => {
         console.log(error);
@@ -44,13 +44,13 @@ const ImageGallery = ({ handlerOpenModal, query }) => {
   }, [query]);
 
   const loadMore = () => {
-    setPage(prev => prev + 1);
     createRequest(query, page)
       .then(res => {
         const { data } = res;
         setImageList(prev => [...prev, ...data.hits]);
         setTotalHits(data.totalHits);
         setStatus(STATUS.success);
+        setPage(prev => prev + 1);
       })
       .catch(error => {
         setError(error.message);
