@@ -25,6 +25,7 @@ const ImageGallery = ({ handlerOpenModal, query }) => {
       return;
     }
     setStatus(STATUS.loading);
+
     createRequest(query)
       .then(res => {
         const { data } = res;
