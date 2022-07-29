@@ -27,7 +27,7 @@ const App = () => {
     if (!query && page === 1) {
       return;
     }
-
+    setStatus(STATUS.loading);
     createRequest(query, page)
       .then(res => {
         const { data } = res;
@@ -41,6 +41,7 @@ const App = () => {
         setStatus(STATUS.error);
       });
   }, [query, page]);
+
   const loadMore = () => {
     setPage(prev => prev + 1);
   };
@@ -53,7 +54,9 @@ const App = () => {
   };
 
   const handlerForm = search => {
-    setStatus(STATUS.loading);
+    if (search === query) {
+      return;
+    }
     setImageList([]);
     setQuery(search);
     setPage(1);
