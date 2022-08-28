@@ -24,6 +24,7 @@ const App = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log('effect');
     if (!query && page === 1) {
       return;
     }
@@ -41,6 +42,10 @@ const App = () => {
         setStatus(STATUS.error);
       });
   }, [query, page]);
+
+  // useLayoutEffect(() => {
+  //     console.log('layout ffect');
+  // }, []);
 
   const loadMore = () => {
     setPage(prev => prev + 1);
